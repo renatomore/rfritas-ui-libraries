@@ -1,4 +1,4 @@
-name: PR Validation
+name: 1 - PR Validation
 
 on:
   push:
@@ -25,15 +25,6 @@ jobs:
       - name: Install Dependencies
         # Use 'npm ci' for faster, more reliable installs in CI
         run: npm ci
-
-      - name: Check for Changeset
-        if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/fix/') || startsWith(github.ref, 'refs/heads/breaking-change/')
-        run: |
-          npx changeset status --since=origin/main
-          if [ $(npx changeset status --since=origin/main | grep "No changesets found" | wc -l) -eq 1 ]; then
-            echo "No changeset found. Please run 'npx changeset add' and commit the file."
-            exit 1
-          fi
 
       - name: Run Lint
         # 'turbo run lint' will only lint the packages that have changed
