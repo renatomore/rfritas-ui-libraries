@@ -1,4 +1,4 @@
-import { Youtube, Instagram, X, Facebook } from "../assets/SocialIcons";
+import { Youtube, Instagram, X, Facebook } from "../../assets/SocialIcons";
 import {
   Bars,
   Bell,
@@ -18,7 +18,7 @@ import {
   ShoppingCartPlus,
   StarNegative,
   StarPositive,
-} from "../assets/Icons";
+} from "../../assets/Icons";
 
 type IconName =
   | "Bars"
