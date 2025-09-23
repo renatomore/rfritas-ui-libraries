@@ -9,7 +9,7 @@
     "check-types": "turbo run check-types",
     "release": "turbo run build --filter=./packages/* && changeset publish",
     "changeset:add": "changeset add",
-    "test": "jest --coverage"
+    "test": "turbo run test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",

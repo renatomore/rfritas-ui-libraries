@@ -1,0 +1,7 @@
+const baseConfig = require("../../jest.config.js");
+
+module.exports = {
+  ...baseConfig,
+  rootDir: ".",
+  displayName: "thoc-ui",
+};
