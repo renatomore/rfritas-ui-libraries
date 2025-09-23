@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { BannerText, ShopNowBannerButton } from "../";
+import { ShopNowBannerButton } from "../Buttons";
+import { BannerText } from "../Typography";
 
 type HoverCardProps = {
   contentText: string;
@@ -17,7 +18,7 @@ type ShopNowCardProps = {
 const CardStyled = styled.div<{
   $bgImg?: string;
   $bgImgHover?: string;
-  small?: boolean;
+  $small?: boolean;
 }>`
   display: flex;
   flex-direction: column-reverse;
@@ -72,23 +73,23 @@ const Text = styled(BannerText)<{ small?: boolean }>`
   pointer-events: none;
 `;
 
-const CardText = styled(Text)<{ small?: boolean }>`
-  margin-left: ${(props) => (props.small ? "16px" : "32px")};
-  font-size: ${(props) => (props.small ? "20px" : "26px")};
+const CardText = styled(Text)<{ $small?: boolean }>`
+  margin-left: ${(props) => (props.$small ? "16px" : "32px")};
+  font-size: ${(props) => (props.$small ? "20px" : "26px")};
 `;
 
-const HoverTextStyled = styled(Text)<{ large?: boolean }>`
+const HoverTextStyled = styled(Text)<{ $large?: boolean }>`
   padding: 40px;
-  font-size: ${(props) => (props.large ? "48px" : "32px")};
+  font-size: ${(props) => (props.$large ? "48px" : "32px")};
   margin: 0;
 `;
 
-const Button = styled(ShopNowBannerButton)<{ small?: boolean }>`
-  width: ${(props) => (props.small ? "89px" : "133px")};
-  height: ${(props) => (props.small ? "32px" : "48px")};
-  margin: ${(props) => (props.small ? "16px" : "24px")};
-  padding: ${(props) => (props.small ? "8px" : null)};
-  font-size: ${(props) => (props.small ? "12px" : null)};
+const Button = styled(ShopNowBannerButton)<{ $small?: boolean }>`
+  width: ${(props) => (props.$small ? "89px" : "133px")};
+  height: ${(props) => (props.$small ? "32px" : "48px")};
+  margin: ${(props) => (props.$small ? "16px" : "24px")};
+  padding: ${(props) => (props.$small ? "8px" : null)};
+  font-size: ${(props) => (props.$small ? "12px" : null)};
   z-index: 1;
 `;
 
@@ -114,11 +115,13 @@ export const ShopNowCard = ({
     <CardStyled
       $bgImg={backgroundImage}
       $bgImgHover={hoverBackgroundImage}
-      small={small}
+      $small={small}
     >
       {!hoverBackgroundImage && <BackgroundImage src={backgroundImage} />}
-      <Button small={small}>SHOP NOW</Button>
-      <CardText small={small}>{contentText}</CardText>
+      <Button $small={small}>SHOP NOW</Button>
+      <CardText $small={small} data-testid="card-text">
+        {contentText}
+      </CardText>
     </CardStyled>
   );
 };
@@ -131,7 +134,7 @@ export const HoverCard = ({
   return (
     <HoverCardStyled>
       <HoverBackgroundImage src={backgroundImage} />
-      <HoverTextStyled large={large}>{contentText}</HoverTextStyled>
+      <HoverTextStyled $large={large}>{contentText}</HoverTextStyled>
     </HoverCardStyled>
   );
 };
