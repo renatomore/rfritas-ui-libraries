@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import "jest-styled-components";
 import { BannerText, DisplayLarge, Title, Heading, PriceText, Text } from ".";
 
