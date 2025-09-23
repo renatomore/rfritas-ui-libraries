@@ -36,3 +36,14 @@ jobs:
       - name: Run Build
         # 'turbo run build' will build all packages in the correct order
         run: npm run build
+
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          PR_TITLE="feat: Automatic PR for $BRANCH_NAME"
+          gh pr create \
+            --base main \
+            --title "$PR_TITLE" \
+            --body-file .github/PULL_REQUEST_TEMPLATE.md
