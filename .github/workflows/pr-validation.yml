@@ -1,16 +1,16 @@
-name: PR Validation
+name: 1 - PR Validation
 
 on:
   push:
     branches:
       - "feature/**"
       - "fix/**"
-      - "breaking-change/**"
       - "docs/**"
 
 jobs:
   validate:
     runs-on: ubuntu-latest
+    environment: pull_request
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -26,23 +26,29 @@ jobs:
         # Use 'npm ci' for faster, more reliable installs in CI
         run: npm ci
 
-      - name: Check for Changeset
-        if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/fix/') || startsWith(github.ref, 'refs/heads/breaking-change/')
-        run: |
-          npx changeset status --since=origin/main
-          if [ $(npx changeset status --since=origin/main | grep "No changesets found" | wc -l) -eq 1 ]; then
-            echo "No changeset found. Please run 'npx changeset add' and commit the file."
-            exit 1
-          fi
-
       - name: Run Lint
         # 'turbo run lint' will only lint the packages that have changed
-        run: npx turbo run lint
+        run: npm run lint
 
       - name: Run Tests
         # 'turbo run test' assumes you have a 'test' script in your package.json files
-        run: npx turbo run test
+        run: npm run test
 
       - name: Run Build
         # 'turbo run build' will build all packages in the correct order
-        run: npx turbo run build
+        run: npm run build
+
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          if gh pr list --head "$BRANCH_NAME" --json number --jq '.[0]' | grep -q '[0-9]'; then
+            echo "A pull request for branch '$BRANCH_NAME' already exists."
+          else
+            PR_TITLE="feat: Automatic PR for $BRANCH_NAME"
+            gh pr create \
+              --base main \
+              --title "$PR_TITLE" \
+              --body-file .github/PULL_REQUEST_TEMPLATE.md
+          fi

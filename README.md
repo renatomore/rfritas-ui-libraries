@@ -1,102 +1,102 @@
-# Turborepo starter
+# rfritas-ui-libraries
 
-This Turborepo starter is maintained by the Turborepo core team.
+[EN-US](#en-us) | [PT-BR](#pt-br)
 
-## Using this example
+---
 
-Run the following command:
+## (EN-US)
 
-```sh
-npx create-turbo@latest
-```
+Welcome to `rfritas-ui-libraries`, a monorepo for developing and maintaining high-quality React component libraries. This project uses [Turborepo](https://turborepo.org/) for its high-performance build system and [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing.
 
-## What's inside?
+### What's Inside?
 
-This Turborepo includes the following packages/apps:
+This monorepo contains the following packages:
 
-### Apps and Packages
+-   `@rfritas/thoc-ui`: A React component library for building modern and accessible user interfaces.
+-   `@repo/eslint-config`: Shared ESLint configurations.
+-   `@repo/typescript-config`: Shared `tsconfig.json` configurations.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Getting Started
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+1.  **Clone the repository:**
+    ```sh
+    git clone https://github.com/rfritas/rfritas-ui-libraries.git
+    cd rfritas-ui-libraries
+    ```
 
-### Utilities
+2.  **Install dependencies:**
+    ```sh
+    npm install
+    ```
 
-This Turborepo has some additional tools already setup for you:
+3.  **Start the development server:**
+    ```sh
+    npm run dev
+    ```
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+### Main Scripts
 
-### Build
+-   `npm run build`: Build all packages ready for production.
+-   `npm run dev`: Start development servers for all packages.
+-   `npm run lint`: Lint all packages.
+-   `npm run test`: Run tests for all packages.
+-   `npm run changeset:add`: Create a new changeset to document a change for versioning.
 
-To build all apps and packages, run the following command:
+### Contributing
 
-```
-cd my-turborepo
+We are excited to welcome contributors! Please read our [**Contributing Guidelines**](./CONTRIBUTING.md) to learn how you can get involved.
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+### License
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+This project is licensed under the MIT License.
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+---
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+## (PT-BR)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+Bem-vindo ao `rfritas-ui-libraries`, um monorepo para desenvolver e manter bibliotecas de componentes React de alta qualidade. Este projeto usa [Turborepo](https://turborepo.org/) para seu sistema de build de alta performance e [Changesets](https://github.com/changesets/changesets) para gerenciar versionamento e publicação.
 
-### Develop
+### O Que Há Dentro?
 
-To develop all apps and packages, run the following command:
+Este monorepo contém os seguintes pacotes:
 
-```
-cd my-turborepo
+-   `@rfritas/thoc-ui`: Uma biblioteca de componentes React para construir interfaces de usuário modernas e acessíveis.
+-   `@repo/eslint-config`: Configurações compartilhadas do ESLint.
+-   `@repo/typescript-config`: Configurações compartilhadas do `tsconfig.json`.
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
+### Como Começar
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
+1.  **Clone o repositório:**
+    ```sh
+    git clone https://github.com/rfritas/rfritas-ui-libraries.git
+    cd rfritas-ui-libraries
+    ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+2.  **Instale as dependências:**
+    ```sh
+    npm install
+    ```
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+3.  **Inicie o servidor de desenvolvimento:**
+    ```sh
+    npm run dev
+    ```
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+### Scripts Principais
 
-### Remote Caching
+-   `npm run build`: Compila todos os pacotes para produção.
+-   `npm run dev`: Inicia os servidores de desenvolvimento para todos os pacotes.
+-   `npm run lint`: Executa o lint em todos os pacotes.
+-   `npm run test`: Executa os testes para todos os pacotes.
+-   `npm run changeset:add`: Cria um novo changeset para documentar uma alteração para versionamento.
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Contribuição
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Estamos animados para receber contribuidores! Por favor, leia nosso [**Guia de Contribuição**](./CONTRIBUTING.md) para aprender como você pode se envolver.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+### Licença
 
+Este projeto está licenciado sob a Licença MIT.
 ```
 cd my-turborepo
 

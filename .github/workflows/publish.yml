@@ -1,4 +1,4 @@
-name: Publish Packages
+name: 2 - Publish Packages
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: main
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -26,12 +27,13 @@ jobs:
       - name: Create .npmrc file
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Version and Publish
         id: changesets
         uses: changesets/action@v1
         with:
-          # This command will version the packages and publish them
+          commit: "chore(release): version packages"
+          title: "chore(release): version packages"
           publish: npm run release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
