@@ -5,7 +5,6 @@ on:
     branches:
       - "feature/**"
       - "fix/**"
-      - "breaking-change/**"
       - "docs/**"
 
 jobs:
@@ -28,12 +27,12 @@ jobs:
 
       - name: Run Lint
         # 'turbo run lint' will only lint the packages that have changed
-        run: npx turbo run lint
+        run: npm run lint
 
       - name: Run Tests
         # 'turbo run test' assumes you have a 'test' script in your package.json files
-        run: npx turbo run test
+        run: npm run test
 
       - name: Run Build
         # 'turbo run build' will build all packages in the correct order
-        run: npx turbo run build
+        run: npm run build
